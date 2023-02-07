@@ -4,6 +4,10 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+// mongoose、配置信息的导入
+const mongoose = require('mongoose');
+const { url, dbname } = require('./config');
+
 // 路由的导入
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -43,5 +47,17 @@ app.use(function (err, req, res, next) {
     res.status(err.status || 500);
     res.render('error');
 });
+
+mongoose
+    .connect('mongodb://localhost:27017/AT', {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+    })
+    .then(() => {
+        console.log('数据库连接成功');
+    })
+    .catch(err => {
+        console.log(err);
+    });
 
 module.exports = app;

@@ -1,36 +1,20 @@
-let mongoose = require('mongoose');
-let connection = require('./connection');
+let atModel = require('./model/at.model');
 
-let atSchema = new mongoose.Schema({
-    parentName: {
-        type: String,
-        unique: true,
-    },
-    desc: {
-        type: String,
-        unique: true,
-    },
-    example: {
-        type: String,
-        unique: true,
-    },
-    name: {
-        type: String,
-        unique: true,
-    },
-    params: {
-        type: String,
-        unique: true,
-    },
-    renderName: {
-        type: String,
-        unique: true,
-    },
-});
+class atController {
+    async findOne(req, res, next) {
+        console.log('执行findOne');
+        console.log(atModel);
+        atModel.find({ name: 'add_skill' }).then(doc => {
+            res.send(doc);
+        });
+    }
+    // async findAll() {
+    //     console.log('执行findAll');
+    //     atModel.find({}).then(doc => {
+    //         return doc;
+    //     });
+    // }
+    async doResponse() {}
+}
 
-let at = connection.model('at', atSchema, 'at');
-
-// at.find({ name: 'add_skill' }).then(doc => {
-at.find({}).then(doc => {
-    console.log(doc);
-});
+module.exports = new atController();
