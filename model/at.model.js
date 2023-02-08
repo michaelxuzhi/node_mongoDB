@@ -22,6 +22,6 @@ const atSchema = new mongoose.Schema({
     },
 });
 
-let atModel = mongoose.model('atcos', atSchema);
+let AtModel = mongoose.model('atcos', atSchema);
 
-module.exports = atModel;
+module.exports = AtModel;

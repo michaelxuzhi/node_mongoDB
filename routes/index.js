@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
+const { find, findAll } = require('../controller/at.controller');
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+// router.get('/', find);
+router.get('/', findAll);
 
 module.exports = router;

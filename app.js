@@ -6,13 +6,16 @@ var logger = require('morgan');
 
 // mongoose、配置信息的导入
 const mongoose = require('mongoose');
-const { url, dbname } = require('./config');
+const { url, dbname } = require('./config/config.dev');
 
 // 路由的导入
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var registerRouter = require('./routes/register');
 var tageditRouter = require('./routes/tagedit'); // 指令标签修改
+
+// var events = require('events');
+// var emitter = new events.EventEmitter();
 
 var app = express();
 
@@ -25,6 +28,19 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+//设置CORS
+// 跨域设置
+app.all('*', function (req, res, next) {
+    res.header('Access-Control-Allow-Origin', 'http://localhost:3002'); //当允许携带cookies此处的白名单不能写’*’
+    res.header(
+        'Access-Control-Allow-Headers',
+        'content-type,Content-Length, Authorization,Origin,Accept,X-Requested-With'
+    ); //允许的请求头
+    res.header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT'); //允许的请求方法
+    res.header('Access-Control-Allow-Credentials', true); //允许携带cookies
+    next();
+});
 
 // 路由的使用
 app.use('/', indexRouter);
@@ -48,8 +64,10 @@ app.use(function (err, req, res, next) {
     res.render('error');
 });
 
+// app.locals.$emitter = emitter;
+// 连接数据库
 mongoose
-    .connect('mongodb://localhost:27017/AT', {
+    .connect(`${url}/${dbname}`, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     })
