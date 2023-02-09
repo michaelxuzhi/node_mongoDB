@@ -20,6 +20,10 @@ const atSchema = new mongoose.Schema({
         type: String,
         unique: true,
     },
+    tag: {
+        type: Array,
+        unique: true,
+    },
 });
 
 let AtModel = mongoose.model('atcos', atSchema);
