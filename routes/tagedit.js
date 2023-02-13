@@ -3,9 +3,13 @@ var express = require('express');
 var router = express.Router();
 
 // 导入at控制器方法
-const { find, findAll, updateTag } = require('../controller/at.controller');
+const { updateTag } = require('../controller/at.controller');
 
-// router.post('/', function (req, res) {
+// {op:1,tag:'需要修改的内容'}
 router.put('/:_id', updateTag);
-// connection.end();
+// 示例：
+// 新增tag数组元素
+// router.put('/:_id', updateTag);
+// 删除tag数组元素
+// router.put('/:_id', deleteTag);
 module.exports = router; // 导出路由
