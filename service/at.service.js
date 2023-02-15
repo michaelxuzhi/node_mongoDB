@@ -1,10 +1,9 @@
 // 真正操作数据库
-const app = require('../app');
 const AtModel = require('../model/at.model');
 
 class AtService {
     // find方法
-    async findCondAt(field, val) {
+    async findOneAt(field, val) {
         let condition = {};
         condition[field] = val;
         // console.log(condition);

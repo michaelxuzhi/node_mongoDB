@@ -10,8 +10,8 @@ const { url, dbname } = require('./config/config.dev');
 
 // 路由的导入
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
 var registerRouter = require('./routes/register');
+var searchRouter = require('./routes/search');
 var tageditRouter = require('./routes/tagedit'); // 指令标签修改
 
 // var events = require('events');
@@ -44,8 +44,8 @@ app.all('*', function (req, res, next) {
 
 // 路由的使用
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 app.use('/register', registerRouter);
+app.use('/search', searchRouter);
 app.use('/tagedit', tageditRouter); // 指令标签修改
 
 // catch 404 and forward to error handler

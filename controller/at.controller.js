@@ -1,14 +1,14 @@
 // at controller 实现对service层的操作
-const { findCondAt, findAllAt, updateAtTag } = require('../service/at.service');
+const { findOneAt, findAllAt, updateAtTag } = require('../service/at.service');
 class AtController {
-    async find(req, res, next) {
+    async getOneAt(req, res, next) {
         // console.log(req.query);
         const { field, val } = req.query;
-        const result = await findCondAt(field, val);
+        const result = await findOneAt(field, val);
         res.send(result);
     }
     // 查找所有
-    async findAll(req, res, next) {
+    async getAllAt(req, res, next) {
         const result = await findAllAt();
         res.send(result);
     }
