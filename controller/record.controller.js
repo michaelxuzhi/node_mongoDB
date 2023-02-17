@@ -2,6 +2,7 @@ const {
     findOneRecord,
     findAllRecord,
     createRecord,
+    insertRecords,
 } = require('../service/record.service');
 
 class RecordController {
@@ -14,12 +15,19 @@ class RecordController {
         const result = await findAllRecord();
         res.send(result);
     }
-    async updateRecord(req, res, next) {
+    async createRecord(req, res, next) {
         // console.log(req.body);
         const _id = req.params._id;
         const recordInfo = req.body;
         recordInfo['atId'] = _id;
         const result = await createRecord(recordInfo);
+        res.send(result);
+    }
+    async updateRecord(req, res, next) {
+        const _id = req.params._id;
+        const recordInfo = req.body;
+        recordInfo['atId'] = _id;
+        const result = await insertRecords(recordInfo);
         res.send(result);
     }
 }

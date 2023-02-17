@@ -6,19 +6,19 @@ const recordSchema = new mongoose.Schema({
     },
     renderName: {
         type: String,
-        unique: true,
+        unique: false,
     },
     atDesc: {
         type: String,
-        unique: true,
+        unique: false,
     },
     clickTime: {
         type: Number,
-        unique: true,
+        unique: false,
     },
     count: {
         type: Number,
-        unique: true,
+        unique: false,
     },
 });
 

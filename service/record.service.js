@@ -13,9 +13,15 @@ class RecordService {
         const atRecords = await RecordModel.find();
         return atRecords;
     }
-    // create 创建新记录项
+    // create 创建新记录项，不可重复
     async createRecord(recordInfo) {
         const res = await RecordModel.create(recordInfo);
+        return res;
+    }
+
+    // insertMany 插入多条记录项
+    async insertRecords(recordInfos) {
+        const res = await RecordModel.insertMany(recordInfos);
         return res;
     }
 }
