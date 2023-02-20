@@ -29,17 +29,18 @@ class RecordController {
     }
     async updateRecord(req, res, next) {
         let condition = {};
-        const _id = req.params._id + ''; // 转成String
+        const _id = req.params._id; // 需要String格式
         const recordInfo = req.body;
         condition['atId'] = _id;
         recordInfo['atId'] = _id;
         const findRes = await findOneRecord(condition);
         if (findRes.length) {
-            // res.send('已存在'); // 已存在就更新搜索记录的点击时间和点击次数
+            recordInfo['count'] = findRes[0]['count'] + 1;
             const updateRes = await updateRecord(condition, recordInfo);
             res.send(updateRes);
             return;
         } else {
+            recordInfo['count'] = 1;
             const createRes = await insertRecords(recordInfo);
             res.send(createRes);
             return;
