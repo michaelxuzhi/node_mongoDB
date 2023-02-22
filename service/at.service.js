@@ -16,20 +16,18 @@ class AtService {
         return atFindRes;
     }
     // 更新doc某字段中的数组项的值
-    async updateAtTag(_id, updateInfo) {
+    async updateAtTag(condition, updateInfo) {
         if (updateInfo['op'] == 1) {
             // 增加doc某字段中的数组项的值
-            const res = await AtModel.updateOne(
-                { _id },
-                { $push: { tag: updateInfo['tag'] } }
-            );
+            const res = await AtModel.updateOne(condition, {
+                $push: { tag: updateInfo['tag'] },
+            });
             return res;
         } else if (updateInfo['op'] == 2) {
             // 删除doc中某字段中的数组的值
-            const res = await AtModel.updateOne(
-                { _id },
-                { $pull: { tag: updateInfo['tag'] } }
-            );
+            const res = await AtModel.updateOne(condition, {
+                $pull: { tag: updateInfo['tag'] },
+            });
             return res;
         }
     }

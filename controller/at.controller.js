@@ -14,9 +14,9 @@ class AtController {
     }
     // 更新某个at指令的tag字段内容
     async updateTag(req, res, next) {
-        const _id = req.params._id;
+        const condition = req.params;
         const updateInfo = req.body;
-        const result = await updateAtTag(_id, updateInfo);
+        const result = await updateAtTag(condition, updateInfo);
         res.send(result);
     }
 }
