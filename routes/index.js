@@ -7,6 +7,6 @@ const { getOneAt, getAllAt } = require('../controller/at.controller');
 // router.get('/', find);
 router.get('/', getAllAt);
 // router.get('/', getAllRecord);
-// router.get('/', getOneAt);
+router.get('/one/:_id', getOneAt);
 
 module.exports = router;

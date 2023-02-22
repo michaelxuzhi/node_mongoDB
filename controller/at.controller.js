@@ -3,8 +3,8 @@ const { findOneAt, findAllAt, updateAtTag } = require('../service/at.service');
 class AtController {
     async getOneAt(req, res, next) {
         // console.log(req.query);
-        const { field, val } = req.query;
-        const result = await findOneAt(field, val);
+        const condition = req.params;
+        const result = await findOneAt(condition);
         res.send(result);
     }
     // 查找所有

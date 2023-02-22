@@ -3,10 +3,7 @@ const AtModel = require('../model/at.model');
 
 class AtService {
     // find方法
-    async findOneAt(field, val) {
-        let condition = {};
-        condition[field] = val;
-        // console.log(condition);
+    async findOneAt(condition) {
         const atFindRes = await AtModel.find(condition);
         // console.log(atFindRes);
         return atFindRes;
