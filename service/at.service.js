@@ -12,6 +12,12 @@ class AtService {
         const atFindRes = await AtModel.find();
         return atFindRes;
     }
+    // 获取表的长度
+    async getAtCollectionLength() {
+        const length = await AtModel.find().count();
+        return length;
+    }
+
     // 更新doc某字段中的数组项的值
     async updateAtTag(condition, updateInfo) {
         if (updateInfo['op'] == 1) {
